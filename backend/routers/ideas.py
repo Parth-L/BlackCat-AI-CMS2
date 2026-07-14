@@ -5,10 +5,10 @@ from database import get_db
 import schemas
 from models import Idea
 
-router = APIRouter(prefix="/ideas", tags=["ideas"])
+router = APIRouter(tags=["ideas"])  # Removed prefix - handled in main.py
 
 
-@router.post("/", response_model=schemas.IdeaResponse)
+@router.post("/ideas/", response_model=schemas.IdeaResponse)
 def create_idea(idea: schemas.IdeaCreate, db: Session = Depends(get_db), user_id: int = 1):
     """Create a new idea (Phase 1: hardcoded user_id=1)"""
     db_idea = Idea(**idea.dict(), user_id=user_id)
@@ -18,14 +18,14 @@ def create_idea(idea: schemas.IdeaCreate, db: Session = Depends(get_db), user_id
     return db_idea
 
 
-@router.get("/", response_model=List[schemas.IdeaResponse])
+@router.get("/ideas/", response_model=List[schemas.IdeaResponse])
 def get_ideas(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), user_id: int = 1):
     """Get all ideas for the user"""
     ideas = db.query(Idea).filter(Idea.user_id == user_id).offset(skip).limit(limit).all()
     return ideas
 
 
-@router.get("/{idea_id}", response_model=schemas.IdeaResponse)
+@router.get("/ideas/{idea_id}", response_model=schemas.IdeaResponse)
 def get_idea(idea_id: int, db: Session = Depends(get_db)):
     """Get a specific idea by ID"""
     idea = db.query(Idea).filter(Idea.id == idea_id).first()
@@ -34,7 +34,7 @@ def get_idea(idea_id: int, db: Session = Depends(get_db)):
     return idea
 
 
-@router.put("/{idea_id}", response_model=schemas.IdeaResponse)
+@router.put("/ideas/{idea_id}", response_model=schemas.IdeaResponse)
 def update_idea(idea_id: int, idea_update: dict, db: Session = Depends(get_db)):
     """Update an idea"""
     db_idea = db.query(Idea).filter(Idea.id == idea_id).first()
@@ -49,7 +49,7 @@ def update_idea(idea_id: int, idea_update: dict, db: Session = Depends(get_db)):
     return db_idea
 
 
-@router.delete("/{idea_id}")
+@router.delete("/ideas/{idea_id}")
 def delete_idea(idea_id: int, db: Session = Depends(get_db)):
     """Delete an idea"""
     db_idea = db.query(Idea).filter(Idea.id == idea_id).first()

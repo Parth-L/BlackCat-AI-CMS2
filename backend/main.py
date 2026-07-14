@@ -35,12 +35,13 @@ app.add_middleware(
 
 # Register all API routers
 # Each router handles a specific domain/module of the application
-app.include_router(ideas.router, prefix="/ideas", tags=["Ideas"])
-app.include_router(posts.router, prefix="/posts", tags=["Posts"])
-app.include_router(series.router, prefix="/series", tags=["Series"])
-app.include_router(analytics.router, prefix="/analytics", tags=["Analytics"])
-app.include_router(experiments.router, prefix="/experiments", tags=["Experiments"])
-app.include_router(assets.router, prefix="/assets", tags=["Assets"])
+# NOTE: Routers now include full paths, so no prefix is needed here
+app.include_router(ideas.router, tags=["Ideas"])
+app.include_router(posts.router, tags=["Posts"])
+app.include_router(series.router, tags=["Series"])
+app.include_router(analytics.router, tags=["Analytics"])
+app.include_router(experiments.router, tags=["Experiments"])
+app.include_router(assets.router, tags=["Assets"])
 
 
 @app.on_event("startup")

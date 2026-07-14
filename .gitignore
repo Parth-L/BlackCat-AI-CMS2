@@ -1,41 +1,26 @@
 ```
-# Python
+# Dependencies
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.pyc
 .Python
-env/
 venv/
 .venv/
 .env
 .env.local
 .env.*
-pyproject.toml
-poetry.lock
-Pipfile
-Pipfile.lock
-requirements.txt
-setup.py
-*.db
-blackcat.db
+
+# Testing
+.pytest_cache/
+.coverage
+coverage/
+htmlcov/
 
 # Logs
 *.log
 
-# Temporary files
-*.tmp
-*.temp
-*.swp
-*~
-
 # OS generated files
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 ```

@@ -94,6 +94,7 @@ class Series(Base):
 
     user = relationship("User", back_populates="series")
     template = relationship("Template", back_populates="series")
+    posts = relationship("Post", back_populates="series")
 
 
 class Template(Base):
