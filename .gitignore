@@ -1,0 +1,26 @@
+```
+# Dependencies
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+.env
+.env.local
+.env.*
+
+# Testing
+.pytest_cache/
+.coverage
+coverage/
+htmlcov/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+```
